@@ -1,4 +1,4 @@
-# <p align = "center"> Back-End Server Template with TypeScript </p>
+# <p align = "center"> Back-End para o Teste Técnico da in8</p>
 
 <p align="center">
    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968381.png" width="250px"/>
@@ -6,22 +6,24 @@
 
 <p align = "center">
    <img src="https://img.shields.io/badge/author-adnanbezerra-4dae71?style=flat-square" />
-   <img src="https://img.shields.io/github/languages/count/adnanbezerra/backend-typescript?color=4dae71&style=flat-square" />
+   <img src="https://img.shields.io/github/languages/count/adnanbezerra/teste-in8-back?color=4dae71&style=flat-square" />
+
 </p>
 
 
-##  :clipboard: Description
+##  :clipboard: Descrição
 
-That's a simple, very basic TypeScript back-end server template. It's meant for being used as a basis for my personal projects, but I believe it can also
-be used by other people. Of course, it follows best my personal likings; still, it's a completely functional server by itself, and  useful
-for a broader use.
+Este é o servidor de back-end para o teste técnico da in8, que consiste na construção de uma API relativamente simples para um e-commerce. Neste, o cliente é capaz de criar uma conta, administrar um carrinho e confirmar compras (embora não chegue a ter a funcionalidade de compra completa). Aqui no README eu irei anotar o andamento do projeto e também como eu fiz cada passo na construção; procurarei ser o mais limpo e explícito possível.
 
-It's configured with JWT usage, testing support with Jest, Prisma ORM installed, schema validating with Joi and some really useful basic middlewares, including
-a really smooth error middleware, and layered architecture.
+De início, como o teste autorizava o uso de qualquer tecnologia que se quisesse, eu aproveitei o meu próprio template de back-end. Ele já vem configurado da forma como eu gosto, com a arquitetura, as configurações do TypeScript, Linter etc. De seguido:
+
+### Meu passo-a-passo na resolução do problema:
+
+- Após leitura cuidadosa na problemática, eu criei um esboço de quais rotas deveriam ser feitas ([clique aqui para ver a foto](https://imgur.com/a/R8uh0ij))
 
 ***
 
-## :computer:	 Technologies and Concepts
+## :computer:	 Tecnologias e Conceitos Usados
 
 - Node.js
 - TypeScript
@@ -32,58 +34,27 @@ a really smooth error middleware, and layered architecture.
 
 ***
 
-## :book: Using the template and installing into your computer
+## 🏁 Executando o código
 
-   1. Use this repository as a template for your own project
-   
-   First of all, since this repository is a template, you have to apply it as a new project so that you can use it in your own project.
-   
-   To do so, you have to click the green "Use this template" button in the beginning of the repository:
-   <img src="https://i.imgur.com/iOTkP4R.png" />
-   
-   Then, you will be able to create a new GitHub repository the way you want to:
-   <img src="https://i.imgur.com/uqXGYM5.png" />
-   
-   2. Clone the project into your machine
-   
-   Once you have created your own repository, download it into your computer by running
-   
-   ```
-   git clone https://github.com/<YOUR_NAME>/<YOUR_PROJECT_NAME>.git
-   ```
-   
-   Git will start downloading your repository to your local computer, while also keeping it connected to GitHub with Git running. So, you can already start
-   coding, without having to worry about other Git details!
+Esse projeto foi feito com [ExpressJS](https://github.com/expressjs/express), então é preciso que sua máquina tenha instaladas as versões estáveis mais recentes do [Node.js](https://nodejs.org/en/download/) e do [npm](https://www.npmjs.com/).
 
-***
+Primeiramente, você precisa clonar esse repositório para a sua máquina:
 
-## 🏁 Running the server
+```
+git clone https://github.com/adnanbezerra/teste-in8-back.git
+```
 
-This project was made using [ExpressJS](https://github.com/expressjs/express), so you must have the latest stable versions of 
-[Node.js](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/) running correctly in your machine.
-
-Once you have cloned this repository into your own GitHub and then cloning it to your computer, you must open the respective project directory in you terminal
-and then run:
+Então, dentro do diretório do projeto, você deve rodar o seguinte comando para instalar as dependências necessárias:
 
 ```
 npm install
 ```
 
-Now, you must configure your `.env` file. You must copy what's inside of `.env.example`, create a `.env` file, past the copied informations and fill in the required
-variables.
+Agora, você preisa configurar o arquivo `.env`. Você deve copiar o que estiver dentro de `.env.example`, criar um arquivo `.env`, colar as informações copiadas e preencher as variáveis necessária.
 
-Now, you can finally run your server locally by running this command:
+Agora, você pode finalmente rodar o seu servidor localmente usando esse comando:
 ```
 npm start
 ```
 
-:stop_sign: If you want to, visit [this repository](https://github.com/adnanbezerra/template-frontend) and pay a visit to the front-end application template with
-React. It already has a router, some basic structures, reset CSS and other pretty useful features to make your front-end programming easier and faster!
-
-## :thinking: How to use the error middleware?
-
-Well, as you must have noticed if you looked at it, the error middleware is quite complex to understand. To be honest, even I don't really know it properly;
-
-Basically, what you have to do is import the specific functions. If you use VSCode, just type, for instance, "throws notFoundError()" and press tab. 
-The IDE will automatically handle the error. Also, if you want to include an error message, just type, for instance, "throws unauthorizedError("You must be logged in!").
-So, this way, the errors will work out just perfectly.
+Para poder ver o projeto completo, não se esqueça de conferir [o front-end da aplicação](https://github.com/adnanbezerra/teste-in8-front) e de checar lá como fazer o processo de instalação e funcionamento. Ele está codificado em Flutter, e, por isso, pode ser trabalhoso caso não esteja acostumado ainda!
