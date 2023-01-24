@@ -1,6 +1,8 @@
 import { client } from '../src/database/prisma';
 
-async function main() {}
+async function main() {
+  /* TODO */
+}
 
 main()
   .catch((e) => {
