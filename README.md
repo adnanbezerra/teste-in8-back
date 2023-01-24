@@ -1,7 +1,7 @@
 # <p align = "center"> Back-End para o Teste Técnico da in8</p>
 
 <p align="center">
-   <img src="https://cdn-icons-png.flaticon.com/512/5968/5968381.png" width="250px"/>
+   <img src="https://in8.com.br/wp-content/themes/IN8/assets/images/logo-rodape.svg" width="250px"/>
 </p>
 
 <p align = "center">
