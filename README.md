@@ -20,6 +20,8 @@ De início, como o teste autorizava o uso de qualquer tecnologia que se quisesse
 ### Meu passo-a-passo na resolução do problema:
 
 - Após leitura cuidadosa na problemática, eu criei um esboço de quais rotas deveriam ser feitas ([clique aqui para ver a foto](https://imgur.com/a/R8uh0ij))
+- Passo primeiro da programação efetiva: desenvolver o banco de dados utilizando o Prisma por ORM. O resultado final do BD saiu bastante diferente do desenhado, como era de se esperar.
+- 
 
 ***
 
