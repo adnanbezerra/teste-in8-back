@@ -1,9 +1,5 @@
 import { client } from '../database/prisma';
 
-async function buyCart() {
-  // TODO
-}
-
 async function editCart(
   userId: number,
   provider: 'brazilian' | 'european',
@@ -46,6 +42,5 @@ async function editCart(
 }
 
 export const cartRepository = {
-  buyCart,
   editCart,
 };

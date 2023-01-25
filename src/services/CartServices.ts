@@ -7,11 +7,6 @@ async function insertIntoCart(payload: NewCartTransaction) {
   await cartRepository.editCart(productId, productProvider, userId);
 }
 
-async function buyCart(userId: number) {
-  // TODO
-}
-
 export const cartServices = {
   insertIntoCart,
-  buyCart,
 };
