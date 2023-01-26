@@ -45,7 +45,19 @@ async function deleteCart(userId: number) {
   return client.cart.delete({ where: { userId } });
 }
 
+async function getCart(userId: number) {
+  return client.cart.findFirst({
+    where: {
+      userId,
+    },
+    include: {
+      ProductsOnCarts: true,
+    },
+  });
+}
+
 export const cartRepository = {
   editCart,
   deleteCart,
+  getCart,
 };
