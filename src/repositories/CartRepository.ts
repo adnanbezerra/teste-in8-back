@@ -41,6 +41,11 @@ async function editCart(
   });
 }
 
+async function deleteCart(userId: number) {
+  return client.cart.delete({ where: { userId } });
+}
+
 export const cartRepository = {
   editCart,
+  deleteCart,
 };
