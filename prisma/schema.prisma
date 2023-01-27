@@ -11,12 +11,11 @@ datasource db {
 }
 
 model Users {
-  id        Int         @id @default(autoincrement())
-  username  String
-  email     String
-  password  String
-  shoppings Shoppings[]
-  Cart      Cart[]
+  id       Int    @id @default(autoincrement())
+  username String
+  email    String
+  password String
+  Cart     Cart[]
 
   @@map("users")
 }
@@ -27,17 +26,17 @@ enum PROVIDERS {
 }
 
 model Product {
-  id                  Int                   @id @default(autoincrement())
-  provider            PROVIDERS
-  idInTheAPI          Int
-  ProductsOnCarts     ProductsOnCarts[]
-  ProductsOnShoppings ProductsOnShoppings[]
+  id              Int               @id @default(autoincrement())
+  provider        PROVIDERS
+  idInTheAPI      Int
+  ProductsOnCarts ProductsOnCarts[]
 }
 
 model Cart {
   id              Int               @id @default(autoincrement())
   user            Users             @relation(fields: [userId], references: [id])
   userId          Int               @unique
+  isBought        Boolean           @default(false)
   ProductsOnCarts ProductsOnCarts[]
 }
 
@@ -48,21 +47,4 @@ model ProductsOnCarts {
   cartId    Int
 
   @@id([productId, cartId])
-}
-
-model ProductsOnShoppings {
-  product    Product   @relation(fields: [productId], references: [id])
-  productId  Int
-  shopping   Shoppings @relation(fields: [shoppingId], references: [id])
-  shoppingId Int
-
-  @@id([productId, shoppingId])
-}
-
-model Shoppings {
-  id                  Int                   @id @default(autoincrement())
-  user                Users                 @relation(fields: [userId], references: [id])
-  userId              Int
-  boughtAt            DateTime              @default(now())
-  ProductsOnShoppings ProductsOnShoppings[]
 }
