@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import { JWT_SECRET } from '../utils/jwt';
 import { NextFunction, Request, Response } from 'express';
-dotenv.config();
+import { unauthorizedError } from '../utils/errorUtils';
 
 export async function ValidateToken(
   req: Request,
@@ -13,18 +13,18 @@ export async function ValidateToken(
     const token = authorization?.replace('Bearer ', '');
 
     if (!token) {
-      return res.sendStatus(401);
+      throw unauthorizedError('No token!');
     }
 
-    const data: any = jwt.verify(token, process.env.JWT_SECRET);
+    const data: any = jwt.verify(token, JWT_SECRET);
 
     if (data) {
       res.locals.id = data.id;
       next();
     } else {
-      return res.status(401).send('Erro ao validar o usuário');
+      throw unauthorizedError('Invalid token!');
     }
   } catch (error) {
-    return res.sendStatus(401);
+    throw unauthorizedError('Invalid token!');
   }
 }
