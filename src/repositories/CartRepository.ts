@@ -84,7 +84,11 @@ async function getUnboughtCart(userId: number) {
       isBought: false,
     },
     include: {
-      ProductsOnCarts: true,
+      ProductsOnCarts: {
+        include: {
+          product: true,
+        },
+      },
     },
   });
 }
@@ -96,7 +100,11 @@ async function getBoughtCarts(userId: number) {
       isBought: true,
     },
     include: {
-      ProductsOnCarts: true,
+      ProductsOnCarts: {
+        include: {
+          product: true,
+        },
+      },
     },
   });
 }
