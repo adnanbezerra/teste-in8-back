@@ -1,5 +1,7 @@
+import { PROVIDERS } from '@prisma/client';
+
 export type NewCartTransaction = {
   productId: number;
-  productProvider: 'european' | 'brazilian';
+  productProvider: PROVIDERS;
   userId: number;
 };

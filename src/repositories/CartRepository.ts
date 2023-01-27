@@ -1,8 +1,9 @@
+import { PROVIDERS } from '@prisma/client';
 import { client } from '../database/prisma';
 
 async function editCart(
   userId: number,
-  provider: 'brazilian' | 'european',
+  provider: PROVIDERS,
   idInTheAPI: number,
 ) {
   return client.cart.upsert({
@@ -41,14 +42,58 @@ async function editCart(
   });
 }
 
-async function deleteCart(userId: number) {
-  return client.cart.delete({ where: { userId } });
+async function createUnboughtCart(
+  userId: number,
+  provider: PROVIDERS,
+  idInTheAPI: number,
+) {
+  return client.cart.create({
+    data: {
+      userId,
+      ProductsOnCarts: {
+        create: [
+          {
+            product: {
+              create: {
+                provider,
+                idInTheAPI,
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
 }
 
-async function getCart(userId: number) {
+async function buyCart(userId: number) {
+  return client.cart.update({
+    where: {
+      userId,
+    },
+    data: {
+      isBought: true,
+    },
+  });
+}
+
+async function getUnboughtCart(userId: number) {
   return client.cart.findFirst({
     where: {
       userId,
+      isBought: false,
+    },
+    include: {
+      ProductsOnCarts: true,
+    },
+  });
+}
+
+async function getBoughtCarts(userId: number) {
+  return client.cart.findMany({
+    where: {
+      userId,
+      isBought: true,
     },
     include: {
       ProductsOnCarts: true,
@@ -58,6 +103,8 @@ async function getCart(userId: number) {
 
 export const cartRepository = {
   editCart,
-  deleteCart,
-  getCart,
+  buyCart,
+  getUnboughtCart,
+  getBoughtCarts,
+  createUnboughtCart,
 };
