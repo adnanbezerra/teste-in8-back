@@ -5,6 +5,8 @@ import { conflictError, unauthorizedError } from '../utils/errorUtils';
 import { Users } from '@prisma/client';
 import { userRepository } from '../repositories/UserRepository';
 
+import { SECRET_KEY, EXPIRATION } from '../utils/jwt';
+
 async function createNewAccount(newUser: NewUser): Promise<void> {
   await checkNewEmailAvailability(newUser);
 
@@ -18,9 +20,6 @@ async function createNewAccount(newUser: NewUser): Promise<void> {
 }
 
 async function loginToUser(loginInfo: LoginInfo): Promise<string> {
-  const SECRET_KEY = process.env.JWT_SECRET;
-  const EXPIRATION = process.env.TOKEN_EXPIRES_IN;
-
   const user = await userRepository.getUserFromDatabase(loginInfo);
   verifyLoginPassword(loginInfo, user);
 
