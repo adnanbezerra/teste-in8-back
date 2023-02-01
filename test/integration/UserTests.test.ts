@@ -12,7 +12,6 @@ const connection = supertest(server);
 describe('UserRouter tests', () => {
   it('regular post sign-up', async () => {
     const payload = createUser();
-    console.log(payload);
 
     const result = await connection.post('/sign-up').send(payload);
 
