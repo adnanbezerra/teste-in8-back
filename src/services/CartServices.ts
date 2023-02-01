@@ -1,5 +1,6 @@
 import { cartRepository } from '../repositories/CartRepository';
 import { NewCartTransaction } from '../types/CartTypes';
+import { notFoundError } from '../utils/errorUtils';
 
 class CartService {
   async insertIntoCart(payload: NewCartTransaction) {
@@ -19,7 +20,13 @@ class CartService {
   }
 
   async buyCart(userId: number) {
-    await cartRepository.buyCart(userId);
+    const isThereUnboughtCart = await cartRepository.getUnboughtCart(userId);
+
+    if (isThereUnboughtCart) {
+      await cartRepository.buyCart(userId);
+    } else {
+      throw notFoundError('You need to create an unbought cart!');
+    }
   }
 
   async getBoughtCarts(userId: number) {
