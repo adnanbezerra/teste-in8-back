@@ -38,6 +38,8 @@ model Cart {
   userId          Int               @unique
   isBought        Boolean           @default(false)
   ProductsOnCarts ProductsOnCarts[]
+
+  @@map("cart")
 }
 
 model ProductsOnCarts {
