@@ -15,7 +15,7 @@
 
 Este é o servidor de back-end para o teste técnico da in8, que consiste na construção de uma API relativamente simples para um e-commerce. Neste, o cliente é capaz de criar uma conta, administrar um carrinho e confirmar compras (embora não chegue a ter a funcionalidade de compra completa). Aqui no README eu irei anotar o andamento do projeto e também como eu fiz cada passo na construção; procurarei ser o mais limpo e explícito possível.
 
-De início, como o teste autorizava o uso de qualquer tecnologia que se quisesse, eu aproveitei o meu próprio template de back-end. Ele já vem configurado da forma como eu gosto, com a arquitetura, as configurações do TypeScript, Linter etc. De seguido:
+De início, como o teste autorizava o uso de qualquer tecnologia que se quisesse, eu aproveitei o meu próprio template de back-end. Ele já vem configurado da forma como eu gosto, com a arquitetura, as configurações do TypeScript, Linter etc. De seguido, fiz um brainstorming em como seria a aplicação, chegando a um modelo inicial, para refatorar algumas vezes e chegar até o modelo atual, que conta com testes de integração.
 
 ### Meu passo-a-passo na resolução do problema:
 
@@ -23,6 +23,9 @@ De início, como o teste autorizava o uso de qualquer tecnologia que se quisesse
 - Passo primeiro da programação efetiva: desenvolver o banco de dados utilizando o Prisma por ORM. O resultado final do BD saiu bastante diferente do desenhado, como era de se esperar.
 - De seguido, criação da rota Users e criação dos testes de integração;
 - Criação da rota Cart para manutenção dos carrinhos de pedidos dos clientes;
+- Fortíssima refatoração do código para não mais precisar de uma rota Shopping;
+- Refatoração da rota Cart para aceitar as features que seriam da rota Shopping;
+- Criação dos testes para a rota Cart finalizada.
 
 ***
 
@@ -36,6 +39,60 @@ De início, como o teste autorizava o uso de qualquer tecnologia que se quisesse
 - Testing with Jest and Faker
 
 ***
+
+ ## :rocket: Rotas
+
+```yml
+POST /signup
+   - Rota para cadastrar um novo usuário
+   - headers: {}
+   - body: {
+      name: "Lorem ipsum",
+      email: "lorem@gmail.com",
+      password: "loremipsum"
+   }
+```
+    
+```yml 
+POST /signin
+   - Rota para fazer login
+   - headers: {}
+   - body: {
+      email: "lorem@gmail.com",
+      password: "loremipsum"
+   }
+```
+
+```yml
+PUT /cart
+   - Rota para adicionar um item ao carrinho de compras
+   - headers: { Authorization: Bearer ${token} }
+   - body: {
+      productId: int x,
+      productProvider: 'brazilia' | 'european',
+   }
+```
+
+```yml
+POST /buy-cart
+   - Rota para fazer a aquisição de um carrinho
+   - headers: { Authorization: Bearer ${token} }
+   - body: {}
+```
+
+```yml
+GET /bought-carts
+   - Rota para retornar os carrinhos já comprados pelo usuário
+   - headers: { Authorization: Bearer ${token} }
+   - body: {}
+```
+
+```yml
+GET /unbought-cart
+   - Rota para retornar o carrinho ainda não comprado do usuário
+   - headers: { Authorization: Bearer ${token} }
+   - body: {}
+```
 
 ## 🏁 Executando o código
 
